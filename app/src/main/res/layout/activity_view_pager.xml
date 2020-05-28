@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewPager">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/page"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+
+        android:layout_weight="1" />
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:background="#FCFDFA"
+        android:layout_gravity="fill"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <TextView     android:background="@drawable/tab"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:id="@+id/tab1"
+            android:text="Music"
+            android:textColor="@color/dark"
+            android:onClick="tablistner"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></TextView>
+        <TextView
+            android:background="@drawable/tab"
+            android:id="@+id/tab2"
+            android:textSize="25sp"
+            android:text="Art"
+            android:textColor="@color/dark"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:onClick="tablistner"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></TextView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

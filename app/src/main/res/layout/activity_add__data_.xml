@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Add_Data_Activity">
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="250dp">
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imagetobeUpload"
+        android:scaleType="centerCrop"
+        />
+
+</androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_marginTop="10dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Details"
+        android:textSize="28sp"
+        />
+
+    <EditText
+        android:focusableInTouchMode="true"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="Email:"
+        android:id="@+id/edtEmail"
+        android:layout_marginTop="10dp"
+        android:inputType="textEmailAddress"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="Price:"
+        android:id="@+id/edtprice"
+        android:layout_marginTop="10dp"
+        android:inputType="phone"
+        />
+    <EditText
+        android:focusableInTouchMode="true"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="Description:"
+        android:id="@+id/edtAddress"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        />
+    <Button
+
+        android:id="@+id/btnInsert"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+
+        android:background="@drawable/btn_selector"
+        android:text="INSERT Data"
+
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        />
+
+</LinearLayout>
+</ScrollView>

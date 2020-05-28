@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+<!--&lt;!&ndash;    <shape&ndash;&gt;-->
+<!--&lt;!&ndash;        android:shape="rectangle"&ndash;&gt;-->
+<!--&lt;!&ndash;        >&ndash;&gt;-->
+<!--&lt;!&ndash;            <stroke android:color="@color/colorPrimary" android:width="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
+<!--&lt;!&ndash;                <corners android:radius="10dp"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <gradient android:angle="90" android:startColor="@color/colorAccent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:endColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:centerColor="@color/colorPrimaryDark"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:type="sweep"&ndash;&gt;-->
+<!--&lt;!&ndash;                />&ndash;&gt;-->
+<!--&lt;!&ndash;    </shape>&ndash;&gt;-->
+    <shape
+        android:shape="rectangle"
+        >
+        <stroke android:color="@color/colorAccent" android:width="5dp"
+            />
+        <solid android:color="@color/pink"/>
+        <gradient android:end="@color/pink" android:endColor="@color/light"/>
+        <corners android:radius="10dp"/>
+
+    </shape>
+</item >
+<item android:state_pressed="true">
+        <shape
+            android:shape="rectangle"
+            >
+            <stroke android:color="@color/colorAccent" android:width="5dp"
+                />
+            <solid android:color="@color/light"/>
+            <corners android:radius="10dp"/>
+
+        </shape>
+    </item>
+    <item android:state_hovered="true">
+        <shape
+            android:shape="line"
+            >
+            <stroke android:color="@color/orange" android:width="5dp"
+                />
+            <solid android:color="@color/light"/>
+            <corners android:radius="10dp"/>
+
+        </shape>
+    </item>
+</selector>
