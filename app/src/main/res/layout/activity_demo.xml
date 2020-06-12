@@ -1,58 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    tools:context=".Detail">
+    android:background="#171616"
+    android:orientation="vertical"
 
+    tools:context=".MainActivity">
 
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID:"
-        android:textSize="20sp"
-        android:id="@+id/txtid"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/first_line"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/grey" />
+
+        <View
+            android:id="@+id/second_line"
+            android:layout_width="20dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/first_line"
+            android:background="@color/orange" />
+
+        <View
+            android:id="@+id/third_line"
+            android:layout_width="20dp"
+            android:layout_height="250dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/second_line"
+            android:background="@color/grey" />
+
+        <View
+            android:id="@+id/fourth_line"
+            android:layout_width="20dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/third_line"
+            android:background="@color/pink" />
+
+        <View
+            android:id="@+id/fifth_line"
+            android:layout_width="20dp"
+            android:layout_height="220dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/fourth_line"
+            android:background="@color/green" />
+
+        <View
+            android:id="@+id/sixth_line"
+            android:layout_width="20dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/fifth_line"
+            android:background="@color/grey" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name:"
-        android:textSize="20sp"
-        android:id="@+id/txtname"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/a"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/back"
+            android:text="A"
+            android:textColor="#fff"
+            android:textSize="150sp"
+             />
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email:"
-        android:textSize="20sp"
-        android:id="@+id/txtemail"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Contact:"
-        android:textSize="20sp"
-        android:id="@+id/txcontact"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Address:"
-        android:textSize="20sp"
-        android:id="@+id/txtaddress"
-        android:layout_marginBottom="10dp"
-        />
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
 
-
-
-
+            <TextView
+                android:id="@+id/tagLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:text="Sell Your Arts with Music"
+                android:textColor="#8A8585"
+                android:textSize="24sp"
+                app:fontFamily="cursive" />
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -7,6 +7,7 @@
 
     android:layout_height="match_parent"
     >
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -21,11 +22,13 @@
 
 </LinearLayout>
     <RelativeLayout
+        android:src="@mipmap/radio"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
    >
 
         <ListView
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/songlist">

@@ -2,16 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:backgroundTint="@color/yellow"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
+    android:background="@color/pink"
+
     tools:context=".RegistrationActivity"
     >
 <ScrollView
+    android:background="@color/pink"
+    android:backgroundTint="@color/yellow"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.cardview.widget.CardView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
@@ -20,25 +26,26 @@
 
 
         <LinearLayout
+           android:background="@color/pink"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_margin="15dp"
             >
             <RelativeLayout
+
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 >
 
-                <TextView
+                <ImageView
                     android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
                     android:text="Register"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
-
+                    android:background="@mipmap/now"
 
                     />
                 <TextView
@@ -56,7 +63,10 @@
                     tools:ignore="OnClick" />
             </RelativeLayout>
 
-
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,13 +75,19 @@
 
 
                 <EditText
-                    android:id="@+id/username"
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Username"
+                    android:hint="Name"
                     android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
 
+            </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:inputType="textPersonName" />
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +108,7 @@
                 android:layout_marginTop="10dp">
 
                 <EditText
-                    android:id="@+id/pass"
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -100,25 +116,14 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
 
-
-                <EditText
-                    android:id="@+id/Contact"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="ContactNumber"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
                 <ImageView
-
+                    android:layout_margin="15dp"
+                    android:background="@mipmap/click1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/imageUpload"

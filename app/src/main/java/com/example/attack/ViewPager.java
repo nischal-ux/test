@@ -12,16 +12,32 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class ViewPager extends AppCompatActivity {
     TextView tab1,tab2;
     String id;
-
+    String url = "http://192.168.100.58/data/fetchImages.php";
+    public static ArrayList<info> employeeArrayList = new ArrayList<>();
+    info employee;
     androidx.viewpager.widget.ViewPager pager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +46,7 @@ public class ViewPager extends AppCompatActivity {
         tab1=findViewById(R.id.tab1);
         tab2=findViewById(R.id.tab2);
         ActionBar actionBar;
-        id=getIntent().getStringExtra("email");
+        id=getIntent().getStringExtra("id");
         actionBar =getSupportActionBar();
 
         // Define Colo getSupportActionBar()rDrawable object and parse color
@@ -69,7 +85,7 @@ public class ViewPager extends AppCompatActivity {
 
             }
           else{
-                return new Music();
+                return new MusicFragment();
 
 
             }
@@ -93,7 +109,7 @@ public class ViewPager extends AppCompatActivity {
             case R.id.menu1:
 
                 Toast.makeText(this, "click1", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplication(),RegistrationActivity.class));
+
 
                 break;
             case R.id.menu2:
@@ -104,4 +120,22 @@ public class ViewPager extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void btn_add_activity(View view) {
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+       // retrieveData();
+    }
+
+
 }
+
+
+
+
+
+

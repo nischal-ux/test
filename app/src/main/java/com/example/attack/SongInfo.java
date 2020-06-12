@@ -8,7 +8,8 @@ public class SongInfo {
     private String Songname;
     private String Artistname;
     private String SongUrl;
-
+    private String Album;
+    private String duration;
     public SongInfo() {
     }
 
@@ -16,6 +17,37 @@ public class SongInfo {
         Songname = songname;
         Artistname = artistname;
         SongUrl = songUrl;
+    }
+
+    public SongInfo(String songname, String artistname, String songUrl, String album, String duration) {
+        Songname = songname;
+        Artistname = artistname;
+        SongUrl = songUrl;
+        Album = album;
+        this.duration = duration;
+    }
+
+    public SongInfo(String songname, String artistname, String songUrl, String album) {
+        Songname = songname;
+        Artistname = artistname;
+        SongUrl = songUrl;
+        Album = album;
+    }
+
+    public String getAlbum() {
+        return Album;
+    }
+
+    public void setAlbum(String album) {
+        Album = album;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public String getSongname() {

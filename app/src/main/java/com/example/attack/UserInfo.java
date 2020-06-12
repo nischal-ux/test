@@ -110,4 +110,7 @@ public class UserInfo {
     public void setDate(String date) {
         this.date = date;
     }
+    public String ToString(){
+return name;
+    }
 }

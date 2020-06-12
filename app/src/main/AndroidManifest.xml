@@ -2,17 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.attack">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,10 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Demo"></activity>
+        <activity android:name=".Demo" >        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
         <activity android:name=".Notification" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegistrationActivity"> </activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegistrationActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,26 +30,29 @@
         <activity
             android:name=".Map_me"
             android:label="@string/title_activity_map_me" />
-
         <activity android:name=".PlayerAcivity" />
-        <activity android:name=".ViewPager"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ViewPager">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
-        <activity android:name=".Add_Data_Activity"></activity>
-        <activity android:name=".Detail"></activity>
+        </activity>
+        <activity android:name=".Add_Data_Activity" />
+        <activity android:name=".Detail" />
         <activity
             android:name=".MyNavigation"
             android:label="@string/title_activity_my_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Edit_Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
 
-        </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <service android:name=".Service" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

@@ -4,9 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
 
+    tools:context=".MainActivity">
+    <SearchView
+        android:id="@+id/search1"
+        app:queryHint="Search"
+        android:iconifiedByDefault="false"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"/>
     <ListView
+
+        android:layout_below="@+id/search1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/myListView">
@@ -19,7 +27,8 @@
         android:id="@+id/floata"
         android:onClick="btn_add_activity"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/colorPrimary"
+
+       android:src="@drawable/ic_add_circle_black_24dp"
         android:layout_alignParentRight="true"
         android:layout_margin="30dp"
         />

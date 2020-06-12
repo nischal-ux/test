@@ -9,9 +9,12 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -46,86 +49,53 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Demo extends AppCompatActivity {
-    TextView tvid, tvname, tvemail, tvcontact, tvaddress;
-    String url = "http://10.0.2.2/data/fetchImages.php";
+    private static int SPLASH_TIME_OUT = 2500;
+
+    //Hooks
+    View first,second,third,fourth,fifth,sixth;
+    TextView  slogan;
+    ImageView a;
+    //Animations
+    Animation topAnimantion,bottomAnimation,middleAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
-        tvid = findViewById(R.id.txtid);
-        tvname = findViewById(R.id.txtname);
-        tvemail = findViewById(R.id.txtemail);
-        tvcontact = findViewById(R.id.txcontact);
-        tvaddress = findViewById(R.id.txtaddress);
-        retrieveData();
-    }
+        first = findViewById(R.id.first_line);
+        second = findViewById(R.id.second_line);
+        third = findViewById(R.id.third_line);
+        fourth = findViewById(R.id.fourth_line);
+        fifth = findViewById(R.id.fifth_line);
+        sixth = findViewById(R.id.sixth_line);
+        a = findViewById(R.id.a);
+        slogan = findViewById(R.id.tagLine);
 
 
-    public void retrieveData(){
-
-        StringRequest request = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("response","response"+response);
-
-                        try{
-
-
-
-                                JSONObject object = new JSONObject(response);
-
-                                String id = object.getString("id");
-                                String name = object.getString("username");
-                                String email = object.getString("email");
-                                String password = object.getString("password");
-                                String contact = object.getString("contact");
-                                //String image = object.getString("image");
-
-                                //String conatact = object.getString("contact");
-                                //String image = object.getString("contact");
-                                //String profile = object.getString("contact");
-                                String description = object.getString("description");
-                                String price = object.getString("price");
-                                String date = object.getString("date");
-
-                                String imageurl = object.getString("profileurl");
-                                String url = "http://10.0.2.2/data/Images/"+imageurl;
-                                String imageurl1 = object.getString("pictures");
-                                String url1 = "http://10.0.2.2/data/Images/"+imageurl1;
-
-                            tvname.setText(name);
+        topAnimantion = AnimationUtils.loadAnimation(this, R.anim.top);
+        bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom);
+        middleAnimation = AnimationUtils.loadAnimation(this, R.anim.middle);
+        first.setAnimation(topAnimantion);
+        second.setAnimation(topAnimantion);
+        third.setAnimation(topAnimantion);
+        fourth.setAnimation(topAnimantion);
+        fifth.setAnimation(topAnimantion);
+        sixth.setAnimation(topAnimantion);
+        a.setAnimation(middleAnimation);
+        slogan.setAnimation(bottomAnimation);
 
 
-                        } catch (JSONException ex) {
-                            ex.printStackTrace();
-                        }
-
-
-
-
-                    }
-
-
-
-
-
-
-
-
-                }, new Response.ErrorListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplication(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            public void run() {
+               startActivity(new Intent(Demo.this,LoginActivity.class));
+
+
+                finish();
             }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(request);
-
-
-
-
+        },SPLASH_TIME_OUT);
     }
+
 }

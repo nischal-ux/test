@@ -2,40 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+
+
+    android:background="@mipmap/kilo"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     tools:context=".LoginActivity"
+
     >
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true"
-        android:elevation="4dp"
-        >
 
+<LinearLayout
+    android:background="@drawable/ic_collections_black_24dp"
+    android:layout_marginLeft="5dp"
+android:layout_marginTop="5dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="15dp"
+            android:layout_margin="5dp"
             >
             <RelativeLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 >
 
                 <TextView
+
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Welcome,"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/holo_red_dark"
 
 
                     />
@@ -46,7 +53,7 @@
                     android:text="Sign Up"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/yellow"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="4dp"
                     android:onClick="moveToRegistration"
@@ -70,11 +77,15 @@
 
 
                 <EditText
+                    android:layout_marginLeft="90dp"
+                    android:textStyle="bold"
+                    android:textColorHint="@color/yellow"
                     android:id="@+id/ed_email"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
+                    android:ems="30"
                     android:hint="Email"
+                    android:textColor="@color/yellow"
 
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -85,10 +96,15 @@
                 android:layout_marginTop="20dp">
 
                 <EditText
+
+                    android:textStyle="bold"
+                    android:layout_marginLeft="90dp"
+                    android:textColor="@color/yellow"
                     android:id="@+id/ed_password"
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="42dp"
-                    android:ems="10"
+                    android:ems="30"
+                    android:textColorHint="@color/yellow"
                     android:hint="Password"
                     android:inputType="textPassword"
                     />
@@ -97,32 +113,75 @@
 
 
          <CheckBox
+             android:layout_marginLeft="90dp"
+
+             android:textColor="@color/orange"
              android:id="@+id/check"
              android:text="Remember me"
+             android:textStyle="bold"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              />
 
 
 
-            <Button
-                android:id="@+id/btn_login"
-                android:backgroundTint="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="20dp"
-                android:layout_marginTop="32dp"
-                android:onClick="Login"
-                android:padding="15dp"
-                android:text="Login"
-                />
+
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
+    <RelativeLayout
 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="25dp">
 
+        <ImageView
+
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/ab"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_add_a_photo_black_24dp" />
+
+        <TextView
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="monospace"
+            android:id="@+id/ab"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sell Your"
+            android:textSize="30dp" />
+
+        <TextView
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic"
+            android:fontFamily="cursive"
+            android:id="@+id/a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ab"
+            android:layout_marginLeft="80dp"
+            android:layout_marginBottom="15dp"
+            android:text="Arts"
+            android:textSize="80dp" />
+    </RelativeLayout>
+    <Button
+
+        android:id="@+id/btn_login"
+android:fontFamily="sans-serif-black"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/orange"
+        android:layout_marginLeft="200dp"
+        android:textSize="30dp"
+        android:onClick="Login"
+
+        android:text="Login"
+        />
+
+</LinearLayout>
 
 
 </LinearLayout>

@@ -2,8 +2,11 @@ package com.example.attack;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -28,25 +32,34 @@ import com.android.volley.toolbox.Volley;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.attack.MusicFragment.songInfos;
+
 public class Add_Data_Activity extends AppCompatActivity {
-    EditText txtEmail,txtContact,txtAddress;
+    EditText txtEmail,txtContact,txtAddress,txtpassword,Contact;
+    int id;
+    private static final String CHANNEL_ID ="personal_notification" ;
+    private static final int Notification_ID =001 ;
     Button btn_insert;
     ImageView uploadImage;
     String encodedImage;
+    public static ArrayList<info> employeeArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__data_);
 
-
-
+        id = getIntent().getIntExtra("id", 0);
+        Contact    = findViewById(R.id.edtcontact);
         txtEmail    = findViewById(R.id.edtEmail);
         txtContact  = findViewById(R.id.edtprice);
         txtAddress  = findViewById(R.id.edtAddress);
+        txtpassword  = findViewById(R.id.password);
         btn_insert = findViewById(R.id.btnInsert);
+
         uploadImage=findViewById(R.id.imagetobeUpload);
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +85,7 @@ public class Add_Data_Activity extends AppCompatActivity {
         final String email = txtEmail.getText().toString().trim();
         final String contact = txtContact.getText().toString().trim();
         final String address = txtAddress.getText().toString().trim();
-
+        final String password = txtpassword.getText().toString().trim();
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
 
@@ -92,18 +105,21 @@ public class Add_Data_Activity extends AppCompatActivity {
 
         else{
             progressDialog.show();
-            StringRequest request = new StringRequest(Request.Method.POST, "http://10.0.2.2/data/reg.php",
+            StringRequest request = new StringRequest(Request.Method.POST, "http://192.168.100.58/data/insert.php",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
                             if(response.equalsIgnoreCase("Data Inserted")){
-                                startActivity(new Intent(getApplicationContext(),ViewPager.class));
+                                startActivity(new Intent(Add_Data_Activity.this,ViewPager.class));
+
                                 Toast.makeText(Add_Data_Activity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                                clicks(getApplicationContext());
                                 progressDialog.dismiss();
                             }
                             else{
                                 Toast.makeText(Add_Data_Activity.this, response, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Add_Data_Activity.this, "fail", Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                             }
 
@@ -127,11 +143,12 @@ public class Add_Data_Activity extends AppCompatActivity {
                     Map<String,String> params = new HashMap<String,String>();
 
 
-                    params.put("name",email);
-                    params.put("password",contact);
-                    //params.put("profileurl", encodedImage);
-                    params.put("email",address);
-
+                    params.put("username",email);
+                    params.put("price",contact);
+                    params.put("pictures", encodedImage);
+                    params.put("description",address);
+                    params.put("password",password);
+                    params.put("contact",password);
                     return params;
                 }
             };
@@ -191,5 +208,39 @@ public class Add_Data_Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    public void clicks(Context context){
+        RemoteViews remoteViews= new RemoteViews(context.getPackageName(),
+                R.layout.music_notification
+        );
+
+
+
+
+
+        String s=encodedImage.getBytes().toString();
+        String sname=txtEmail.getText().toString();
+        //String song=songInfo.get(position).getArtistname().toString();
+        //Intent intentplay=new Intent(this,PlayerAcivity.class).setAction(ACTIONPREVIOUS);
+        ///PendingIntent pendingIntent = PendingIntent.getActivities(this, 0, new Intent[]{intentplay}, PendingIntent.FLAG_UPDATE_CURRENT);
+        // int previous = R.drawable.ic_skip_previous_black_24dp;
+
+        // Bitmap bitmapFactory=BitmapFactory.decodeResource(context.getResources(),Integer.parseInt(songInfo.get(position).getSongUrl()));
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(Add_Data_Activity.this, CHANNEL_ID);
+        builder  .setSmallIcon(R.drawable.ic_add_a_photo_black_24dp);
+       // builder.setContent(remoteViews);
+        // builder.setLargeIcon(s);
+        builder.setContentTitle(sname);
+        builder.setContentText("ImageUploaded");
+        //builder.addAction(previous,"",pendingIntent);
+        //builder.setCustomBigContentView(remoteViews);
+        //builder  .setContentText(song);
+        builder .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        NotificationManagerCompat notificationManagerCompat=NotificationManagerCompat.from(context);
+        notificationManagerCompat.notify(Notification_ID,builder.build());
+        Log.i( "clicks: ","notificationManagerCompat"+builder);
+
+
     }
     }

@@ -50,8 +50,9 @@ public class Music extends Fragment {
     ListView songlist;
     String[]items;
     ImageView smg;
-    private ArrayList<SongInfo> songInfos = new ArrayList<SongInfo>();;
-ArrayAdapter<String> adp;
+    SongAdapter songAdapter;
+   static ArrayList<SongInfo> songInfos = new ArrayList<SongInfo>();;
+//ArrayAdapter<String> adp;
     SearchView searchView;
     ActionBar actionBar;
     FloatingActionButton floata;
@@ -87,16 +88,16 @@ ArrayAdapter<String> adp;
         });
         searchView=view.findViewById(R.id.search);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-               //adp.getFilter().filter(s);
-                return false;
-            }
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    songAdapter.getFilter().filter(s);
+                    return true;
+                }
         });
         searchView.setVisibility(View.GONE);
 //        actionBar.setTitle("Music");
@@ -112,7 +113,7 @@ ArrayAdapter<String> adp;
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
-                       // display();
+                        dissplay1();
                     }
 
                     @Override
@@ -162,17 +163,53 @@ ArrayAdapter<String> adp;
                 String songName = songlist.getItemAtPosition(position).toString();
                 startActivity(new Intent(getContext(),PlayerAcivity.class)
 
-                        .putExtra("pos",position).putExtra("songs",mySongs).putExtra("songname",songName));
+                        .putExtra("pos",position));
             }
         });
     }
 
 
 
-    //final ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(getContext(),R.layout.playlist_items,R.id.title,items);
+//    final ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(getContext(),R.layout.playlist_items,R.id.title,items);
 
 
+    void dissplay1(){
 
+        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        String selection = MediaStore.Audio.Media.IS_MUSIC+"!=0";
+        final Cursor cursor = getActivity().getContentResolver().query(uri,null,selection,null,null);
+        if(cursor != null){
+            if(cursor.moveToFirst()){
+                do{
+                    final String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
+                    String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+                    String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
+                    final String url = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+
+                    SongInfo s = new SongInfo(name,artist,url,album);
+                    songInfos.add(s);
+
+                }while (cursor.moveToNext());
+            }
+
+            cursor.close();
+            songlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int
+                        position, long l) {
+
+
+                    Intent i = new Intent(getActivity(),PlayerAcivity.class)
+                            .putExtra("pos",position);
+                    startActivity(i);
+
+                }
+            });
+
+        }
+        songAdapter = new SongAdapter(getActivity(),songInfos);
+
+    }
 
 
 

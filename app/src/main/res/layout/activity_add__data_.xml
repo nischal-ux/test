@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:background="@color/pink"
+
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".Add_Data_Activity">
 
-<androidx.cardview.widget.CardView
+<TextView
+
+        android:layout_width="match_parent"
+
+
+        android:layout_height="49dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FDFDFB"
+        android:text="Enter Details"
+        android:textSize="28sp" />
+
+    <androidx.cardview.widget.CardView
+    android:backgroundTint="#FDFDFB"
     android:layout_width="match_parent"
     android:layout_height="250dp">
     <ImageView
-
+        android:layout_margin="6dp"
+        android:background="@mipmap/click1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/imagetobeUpload"
@@ -23,27 +38,24 @@
         />
 
 </androidx.cardview.widget.CardView>
-    <TextView
-        android:layout_marginTop="10dp"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Enter Details"
-        android:textSize="28sp"
-        />
 
     <EditText
+        android:background="@drawable/edit"
+        android:padding="5dp"
         android:focusableInTouchMode="true"
         android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:hint="Email:"
+
+        android:hint="Username:"
         android:id="@+id/edtEmail"
         android:layout_marginTop="10dp"
         android:inputType="textEmailAddress"
         />
     <EditText
+        android:background="@drawable/edit"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
@@ -53,6 +65,19 @@
         android:inputType="phone"
         />
     <EditText
+        android:background="@drawable/edit"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="Contact:"
+        android:id="@+id/edtcontact"
+        android:layout_marginTop="10dp"
+        android:inputType="phone"
+        />
+    <EditText
+        android:background="@drawable/edit"
+        android:padding="5dp"
         android:focusableInTouchMode="true"
         android:textColor="@color/black"
         android:layout_width="match_parent"
@@ -63,12 +88,25 @@
         android:layout_marginTop="10dp"
         android:inputType="text"
         />
+    <EditText
+        android:background="@drawable/edit"
+        android:padding="5dp"
+        android:focusableInTouchMode="true"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="Password:"
+        android:id="@+id/password"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        />
     <Button
 
         android:id="@+id/btnInsert"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-
+android:textColor="@color/colorPrimary"
         android:background="@drawable/btn_selector"
         android:text="INSERT Data"
 

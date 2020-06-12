@@ -12,6 +12,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.attack.ArtFragment;
+import com.example.attack.Music;
 import com.example.attack.R;
 
 public class HomeFragment extends Fragment {
@@ -53,12 +55,12 @@ public class HomeFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             if(position==1){
-                return new MusicFragment();
+                return new ArtFragment();
             }
             if(position==2){
-                return new MusicFragment();
+                return new ArtFragment();
             }
-            return new MusicFragment();
+            return new ArtFragment();
         }
 
         @Override

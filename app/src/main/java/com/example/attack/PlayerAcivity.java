@@ -30,19 +30,21 @@ import com.bumptech.glide.Glide;
 import java.io.File;
 import java.util.ArrayList;
 
-public class PlayerAcivity extends AppCompatActivity {
+import static com.example.attack.MusicFragment.songInfos;
 
+public class PlayerAcivity extends AppCompatActivity {
+    ImageView next, pause, previous;
     private static final String CHANNEL_ID ="personal_notification" ;
     private static final int Notification_ID =001 ;
-    ImageView next, pause, previous;
-    ImageView cover;
+    ImageView cover,cov;
     SeekBar seek;
-    ArrayList<File> mySongs;
-    TextView songlabel;
+
+    TextView songlabel,artist;
     static MediaPlayer myMediaPlayer;
     int position;
+String artistname;
     String sname;
-
+    static ArrayList<SongInfo> songInfo = new ArrayList<SongInfo>();
     Thread updateseekbar;
     TextView last,Starttime;
     @Override
@@ -54,24 +56,26 @@ public class PlayerAcivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Now Playing");
         clicks(getApplicationContext());
-        // Uri uri=Uri.parse(mySongs.get(position).getPath());
-
-        // Glide.with(this).load(mySongs.get(position)).into(cover);
+       //  Uri uri=Uri.parse(songInfo.get(position).get());
+        cover = findViewById(R.id.cover);
+        cov = findViewById(R.id.cov);
         pause = findViewById(R.id.pause);
         Starttime = findViewById(R.id.current);
         last = findViewById(R.id.last);
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
+        artist=findViewById(R.id.artist);
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 seek.setMax(myMediaPlayer.getDuration());
-                if (myMediaPlayer.isPlaying()) {
-
+                if(myMediaPlayer.isPlaying()){
+                pause.setBackgroundResource(R.drawable.ic_pause_24dp);
                     myMediaPlayer.pause();
 
-                } else {
-
+                }
+                else {
+                    pause.setBackgroundResource(R.drawable.ic_play_arrow_black_24dp);
                     myMediaPlayer.start();
                 }
             }
@@ -80,23 +84,46 @@ public class PlayerAcivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(myMediaPlayer.isPlaying()){
                 myMediaPlayer.stop();
                 myMediaPlayer.release();
-                position = ((position + 1) % mySongs.size());
-                Uri u = Uri.parse(mySongs.get(position).toString());
-                // songNameText.setText(getSongName);
-                myMediaPlayer = MediaPlayer.create(getApplicationContext(), u);
+                position = ((position + 1) % songInfo.size());
 
-                sname = mySongs.get(position).getName().toString();
+                sname = songInfo.get(position).getSongname().toString();
+
                 songlabel.setText(sname);
+                    artistname = songInfo.get(position).getArtistname().toString();
+                    artist.setText(artistname);
+                    Uri u = Uri.parse(songInfo.get(position).getSongUrl());
+                    // songNameText.setText(getSongName);
+                    byte[] image=getAlbumImage(songInfo.get(position).getSongUrl());
+
+                    Glide.with(getApplication()).asBitmap().load(image).into(cover);
+                    Glide.with(getApplication()).asBitmap().load(image).into(cov);
+                    myMediaPlayer = MediaPlayer.create(getApplicationContext(), u);
 
 
+                //  myMediaPlayer = MediaPlayer.create(getApplicationContext(),u);
                 try {
                     myMediaPlayer.start();
                 } catch (Exception e) {
+
                 }
 
-            }
+            }else {
+
+                    myMediaPlayer.stop();
+                    myMediaPlayer.release();
+                    position = ((position + 1) % songInfo.size());
+
+                    sname = songInfo.get(position).getSongname().toString();
+                    songlabel.setText(sname);
+
+                    Uri u = Uri.parse(songInfo.get(position).toString());
+                    // songNameText.setText(getSongName);
+                    myMediaPlayer = MediaPlayer.create(getApplicationContext(), u);
+                }}
         });
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,12 +132,19 @@ public class PlayerAcivity extends AppCompatActivity {
                 myMediaPlayer.stop();
                 myMediaPlayer.release();
 
-                position = ((position - 1) < 0) ? (mySongs.size() - 1) : (position - 1);
-                Uri u = Uri.parse(mySongs.get(position).toString());
-                myMediaPlayer = MediaPlayer.create(getApplicationContext(), u);
-                sname = mySongs.get(position).getName().toString();
+                position=((position-1)<0)?(songInfo.size()-1):(position-1);
+                Uri u = Uri.parse(songInfo.get(position).getSongUrl());
+                myMediaPlayer = MediaPlayer.create(getApplicationContext(),u);
+                sname = songInfo.get(position).getSongname().toString();
                 songlabel.setText(sname);
+                artistname = songInfo.get(position).getArtistname().toString();
+                artist.setText(artistname);
+                byte[] image=getAlbumImage(songInfo.get(position).getSongUrl());
+                Glide.with(getApplication()).asBitmap().load(image).into(cover);
+                Glide.with(getApplication()).asBitmap().load(image).into(cov);
                 myMediaPlayer.start();
+
+
             }
         });
 
@@ -134,57 +168,67 @@ public class PlayerAcivity extends AppCompatActivity {
 
             }
         });
-        cover = findViewById(R.id.cover);
+
 
         songlabel = findViewById(R.id.songlabel);
-
-
-        updateseekbar = new Thread() {
+//
+//
+        updateseekbar=new Thread(){
             @Override
             public void run() {
-                int totalDuration = myMediaPlayer.getDuration();
-                int current = 1;
+                int totalDuration=myMediaPlayer.getDuration();
+                int current=1;
 
-                while (current < totalDuration) {
+                while (current<totalDuration){
                     try {
 
                         sleep(10000);
-                        current = myMediaPlayer.getCurrentPosition();
+                        current=myMediaPlayer.getCurrentPosition();
                         seek.setProgress(current);
 
-                    } catch (InterruptedException e) {
+                    }
+                    catch (InterruptedException e){
                         e.printStackTrace();
                     }
                 }
             }
         };
 
-        if (myMediaPlayer != null) {
-            myMediaPlayer.stop();
-            myMediaPlayer.release();
+
+        position=getIntent().getIntExtra("pos",0);
+
+        songInfo=songInfos;
+
+        String songName=songInfo.get(position).getSongname().toString();
+  songlabel.setText(songName);
+        artistname = songInfo.get(position).getArtistname().toString();
+        artist.setText(artistname);
+            songlabel.setSelected(true);
+
+        if(songInfo!=null) {
+            Uri u = Uri.parse(songInfo.get(position).getSongUrl());
         }
 
-        Intent intent = getIntent();
-        Intent i = getIntent();
-        Bundle b = i.getExtras();
+        if (myMediaPlayer!=null){
+            myMediaPlayer.stop();
+            myMediaPlayer.release();
 
+            Uri u = Uri.parse(songInfo.get(position).getSongUrl());
+            myMediaPlayer=MediaPlayer.create(getApplicationContext(),u);
+            myMediaPlayer.start();
 
-        mySongs = (ArrayList) b.getParcelableArrayList("songs");
-
-        sname = mySongs.get(position).getName().toString();
-
-        String SongName = i.getStringExtra("songname");
-        songlabel.setText(SongName);
-        songlabel.setSelected(true);
-
-        position = b.getInt("pos", 0);
-        Uri u = Uri.parse(mySongs.get(position).toString());
-
-        myMediaPlayer = MediaPlayer.create(getApplicationContext(), u);
-        myMediaPlayer.start();
-
+        } else{
+            Uri u = Uri.parse(songInfo.get(position).getSongUrl());
+            myMediaPlayer=MediaPlayer.create(getApplicationContext(),u);
+            myMediaPlayer.start();
+        }
         seek.setMax(myMediaPlayer.getDuration());
+        byte[] image=getAlbumImage(songInfo.get(position).getSongUrl());
+
+        Glide.with(this).asBitmap().load(image).into(cover);
+        Glide.with(getApplication()).asBitmap().load(image).into(cov);
         updateseekbar.start();
+
 
 
     }
@@ -215,42 +259,49 @@ public class PlayerAcivity extends AppCompatActivity {
 
 
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if(item.getItemId()==android.R.id.home){
-//            onBackPressed();
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-private Bitmap getAlbumImage(String path) {
-    android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-    mmr.setDataSource(path);
-    byte[] data = mmr.getEmbeddedPicture();
-    if (data != null) return BitmapFactory.decodeByteArray(data, 0, data.length);
-    return null;
-}
+        @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+        public byte[] getAlbumImage(String uri) {
+        android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(uri.toString());
+        byte[] data = mmr.getEmbeddedPicture();
+
+          return data;
+
+
+    }
     public void clicks(Context context){
         RemoteViews remoteViews= new RemoteViews(context.getPackageName(),
                 R.layout.music_notification
         );
-        Intent i=getIntent();
-        Bundle bundle=i.getExtras();
-        mySongs=(ArrayList) bundle.getParcelableArrayList("songs");
-        sname=mySongs.get(position).getName().toString();
-        String songName=i.getStringExtra("songname");
+
+
+        position=getIntent().getIntExtra("pos",0);
+
+        songInfo=songInfos;
+
+        String sname=songInfo.get(position).getSongname().toString();
+        String song=songInfo.get(position).getArtistname().toString();
         //Intent intentplay=new Intent(this,PlayerAcivity.class).setAction(ACTIONPREVIOUS);
         ///PendingIntent pendingIntent = PendingIntent.getActivities(this, 0, new Intent[]{intentplay}, PendingIntent.FLAG_UPDATE_CURRENT);
         // int previous = R.drawable.ic_skip_previous_black_24dp;
 
-        //Bitmap bitmapFactory=BitmapFactory.decodeResource(context.getResources(),);
+       // Bitmap bitmapFactory=BitmapFactory.decodeResource(context.getResources(),Integer.parseInt(songInfo.get(position).getSongUrl()));
         NotificationCompat.Builder builder = new NotificationCompat.Builder(PlayerAcivity.this, CHANNEL_ID);
-        builder  .setSmallIcon(R.drawable.ic_search_black_24dp);
+        builder  .setSmallIcon(R.drawable.ic_play_arrow_black_24dp);
         //builder.setContent(remoteViews);
+      //  builder.setLargeIcon(bitmapFactory);
+        builder.setContentTitle(sname);
 
         //builder.addAction(previous,"",pendingIntent);
         //builder.setCustomBigContentView(remoteViews);
-        builder  .setContentText(songName);
+        builder  .setContentText(song);
         builder .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManagerCompat notificationManagerCompat=NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(Notification_ID,builder.build());

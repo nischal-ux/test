@@ -3,46 +3,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/linear"
-    android:background="@mipmap/space"
+
+
     android:orientation="vertical">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:gravity="center"
         android:orientation="vertical">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
         <ImageView
-            android:padding="15dp"
 
-            android:src="@mipmap/list"
-            android:background="@drawable/imagecover"
+
+            android:background="@mipmap/v"
+
             android:id="@+id/cover"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-             />
-
-        <TextView
-            android:textColor="#FFFFFF"
-            android:id="@+id/songlabel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:ellipsize="marquee"
-            android:gravity="center"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="SongName"
-            android:textAlignment="center"
-            android:textSize="22dp" />
+            android:layout_height="match_parent"
+             />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:padding="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
 
+        android:src="@mipmap/v"
 
+        android:id="@+id/cov"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        />
+
+</RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:background="@mipmap/image2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="40dp" />
+                android:layout_marginBottom="20dp" />
 
             <TextView
                 android:src="@drawable/seek"
@@ -73,7 +73,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="60dp" />
+                android:layout_marginBottom="10dp" />
 
             <TextView
                 android:layout_toRightOf="@+id/current"
@@ -83,18 +83,18 @@
                 android:layout_above="@+id/seek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="50dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="60dp" />
+                android:layout_marginBottom="10dp" />
             <ImageView
                 android:layout_marginTop="5dp"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
-
+                android:background="@drawable/ic_play_arrow_black_24dp"
                 android:id="@+id/pause"
                 android:text="Pause"
-                android:src="@drawable/ic_play_arrow_black_24dp"
+
                 />
 
             <ImageView
@@ -116,7 +116,36 @@
                 android:layout_marginRight="20dp"
                 android:layout_toLeftOf="@+id/pause"
                 android:src="@drawable/ic_navigate_before_black_24dp"/>
+            <TextView
+                android:layout_below="@+id/pause"
+                android:textColor="#EF5626"
+                android:id="@+id/songlabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="SongName"
+                android:textAlignment="center"
+                android:textSize="22dp" />
+            <TextView
+                android:layout_below="@+id/songlabel"
+                android:textColor="#3D872C"
+                android:id="@+id/artist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:marqueeRepeatLimit="@integer/config_navAnimTime"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="SongName"
+                android:textAlignment="center"
+                android:textSize="15dp" />
         </RelativeLayout>
 
 

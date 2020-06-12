@@ -1,28 +1,21 @@
 package com.example.attack;
 
 public class info {
-    public String id,  name,  email, password,contact,price,description,profileurl,pictures,date;
+    public String id,  name,username,  email, password,contact,price,description,profileurl,pictures,date;
 
-    public info(String id, String name, String email, String password, String contact, String price, String description, String profileurl, String pictures, String date) {
+
+    public info(String id, String username, String contact, String price, String description, String pictures, String date) {
         this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
+        this.username = username;
+
         this.contact = contact;
         this.price = price;
         this.description = description;
-        this.profileurl = profileurl;
         this.pictures = pictures;
         this.date = date;
     }
 
-    public info(String id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
 
-    }
 public info(String id){
         this.id=id;
 
@@ -30,8 +23,38 @@ public info(String id){
     public info() {
     }
 
+    public info(String id, String username, String contact, String price, String description, String url1, String date, String email) {
+        this.username = username;
+this.email=email;
+        this.contact = contact;
+        this.price = price;
+        this.description = description;
+        this.pictures = pictures;
+        this.date = date;
+        this.id=id;
+    }
+
+    public info(String id, String name, String username, String email, String profileurl) {
+        this.username = username;
+        this.email=email;
+        this.id=id;
+        this.name=name;
+        this.profileurl=profileurl;
+    }
+
+    public info(String[] username) {
+    }
+
     public String getId() {
         return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setId(String id) {

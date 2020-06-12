@@ -16,10 +16,12 @@
     <shape
         android:shape="rectangle"
         >
-        <stroke android:color="@color/colorAccent" android:width="5dp"
+        <stroke android:color="@color/yellow" android:width="2dp"
             />
-        <solid android:color="@color/pink"/>
-        <gradient android:end="@color/pink" android:endColor="@color/light"/>
+        <solid android:color="@color/colorAccent"/>
+        <gradient  android:endColor="@color/dark"
+            android:startColor="@color/pink"
+            />
         <corners android:radius="10dp"/>
 
     </shape>
@@ -29,6 +31,7 @@
             android:shape="rectangle"
             >
             <stroke android:color="@color/colorAccent" android:width="5dp"
+
                 />
             <solid android:color="@color/light"/>
             <corners android:radius="10dp"/>

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -32,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
-    EditText txtName,txtEmail,txtContact,txtAddress;
+    EditText txtName,txtEmail,txtusername,txtpassword;
     Button btn_insert;
     ImageView uploadImage;
 SharedPreferences sharedPreferences;
@@ -41,12 +42,13 @@ SharedPreferences sharedPreferences;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        txtName     = findViewById(R.id.username);
+        txtName     = findViewById(R.id.name);
         txtEmail    = findViewById(R.id.email);
-        txtContact  = findViewById(R.id.Contact);
-        txtAddress  = findViewById(R.id.pass);
+        txtusername  = findViewById(R.id.username);
+        txtpassword  = findViewById(R.id.password);
         btn_insert = findViewById(R.id.btn_register);
         uploadImage=findViewById(R.id.imageUpload);
+        getSupportActionBar().hide();
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,16 +65,24 @@ SharedPreferences sharedPreferences;
                 insertData();
             }
         });
-    }
 
+    }
+    public void moveToLogin(View view){
+        startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+
+
+
+    }
     private void insertData() {
 
         final String name = txtName.getText().toString().trim();
         final String email = txtEmail.getText().toString().trim();
-        final String password = txtContact.getText().toString().trim();
-        final String contact = txtAddress.getText().toString().trim();
+        final String password = txtpassword.getText().toString().trim();
+        final String username = txtusername.getText().toString().trim();
         SharedPreferences sharedPreferences=getSharedPreferences("Userinfo",0);
         SharedPreferences.Editor editor= sharedPreferences.edit();
+        editor.putString("username",username);
+        editor.putString("name",name);
         editor.putString("email",email);
         editor.putString("password",password);
         editor.apply();
@@ -87,7 +97,7 @@ SharedPreferences sharedPreferences;
             Toast.makeText(this, "Enter Email", Toast.LENGTH_SHORT).show();
             return;
         }
-        else if(contact.isEmpty()){
+        else if(username.isEmpty()){
             Toast.makeText(this, "Enter Contact", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -99,7 +109,7 @@ SharedPreferences sharedPreferences;
         else{
 
             progressDialog.show();
-            StringRequest request = new StringRequest(Request.Method.POST, "http://192.168.100.58/data/insert.php",
+            StringRequest request = new StringRequest(Request.Method.POST, "http://192.168.100.58/data/reg.php",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -125,11 +135,11 @@ SharedPreferences sharedPreferences;
 
                     Map<String,String> params = new HashMap<String,String>();
 
-                    params.put("name",name);
+                    params.put("username",username);
                     params.put("email",email);
                     params.put("password",password);
-                    params.put("contact",contact);
-                    params.put("profileurl", encodedImage);
+                    params.put("name",name);
+                    params.put("profile", encodedImage);
                     //params.put("description",address);
                     return params;
                 }

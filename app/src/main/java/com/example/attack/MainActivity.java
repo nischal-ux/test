@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                                     String url = "http://10.0.2.2/data/Images/"+imageurl;
                                     String imageurl1 = object.getString("pictures");
                                     String url1 = "http://10.0.2.2/fata/Images/"+imageurl1;
-                                    employee = new info(id,  name,  email, password,contact,price,description,url,url1,date);
+                                    employee = new info(id,  name,  email, password,contact,price,description,url);
                                     employeeArrayList.add(employee);
                                     adapter.notifyDataSetChanged();
 

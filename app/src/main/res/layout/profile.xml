@@ -1,58 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:background="#F9FBF9"
+    >
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:padding="5dp"
+            android:id="@+id/image1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+    </androidx.cardview.widget.CardView>
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    tools:context=".Detail">
-
-
-
+    android:orientation="vertical">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID:"
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:id="@+id/description1"
+        android:text="Name"
+        android:gravity="center_vertical"
         android:textSize="20sp"
-        android:id="@+id/txtid"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name:"
-        android:textSize="20sp"
-        android:id="@+id/txtname"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email:"
-        android:textSize="20sp"
-        android:id="@+id/txtemail"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Contact:"
-        android:textSize="20sp"
-        android:id="@+id/txcontact"
-        android:layout_marginBottom="10dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Address:"
-        android:textSize="20sp"
-        android:id="@+id/txtaddress"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
         />
 
+    <TextView
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/contact1"
+        android:text="Username"
+        android:gravity="center_vertical|left"
+        android:textSize="20sp"
 
+        />
 
+    <TextView
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/price1"
+        android:text="Email"
+        android:gravity="center_vertical|left"
+        android:textSize="20sp"
 
-
+        />
+</LinearLayout>
+    <View
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
 </LinearLayout>
