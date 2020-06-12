@@ -7,7 +7,7 @@ include_once'dbconnect.php';
 $result = array();
 			
 			
-$select= "SELECT *from view";
+$select= "SELECT *from loginuser";
 			
 $responce = mysqli_query($con,$select);
 	
@@ -21,15 +21,15 @@ while($row = mysqli_fetch_array($responce))
 $index['id']      = $row['0'];
 
 
-		   $index['username']      = $row['1'];
-$index['pictures']   = $row['2'];
+		   $index['username']      = $row['2'];
 
-$index['date']   = $row['3'];
-		  $index['price']   = $row['6'];
+
+$index['name']   = $row['1'];
+		 
 		
-$index['description']   = $row['4'];
-$index['contact']      = $row['7'];
-		   
+$index['email']   = $row['3'];
+
+$index['profile']   = $row['5'];		   
  
 
 

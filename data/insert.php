@@ -1,42 +1,41 @@
 <?php
 include_once'dbconnect.php';
 
-$username=$_POST['username'];
-$email=$_POST['email'];
-$password=$_POST['password'];
-$contact=$_POST['contact'];
-//$artistid=$_POST['artistid'];
 
+$username=$_POST['username'];
+
+$password=$_POST['password'];
+$price=$_POST['price'];
+$description=$_POST['description'];
+$contact=$_POST['contact'];
+$date = date('Y/m/d H:i:s');
+//$artistid=$_POST['artistid'];
 $target_dir = "Images/";
 	
-$profileurl = $_POST['profileurl'];
+$pictures = $_POST['pictures'];
 	
 $imageStore = rand()."_".time().".jpeg";
 	
 $target_dir = $target_dir."/".$imageStore;
 	
-file_put_contents($target_dir, base64_decode($profileurl));
+file_put_contents($target_dir, base64_decode($pictures));
 
-	
-$sql="Insert into artist(email) values ('$email')";
+ $Sql_Query = "select * from loginuser where username = '$username' and password = '$password' ";
+ $check =mysqli_query($con,$Sql_Query);
+ if($check->num_rows > 0){
+
+$sql="Insert into view(price,description,password,username,pictures,date,contact) values ('$price','$description','$password','$username','$imageStore','$date','$contact')";
 	
 $r=mysqli_query($con,$sql);	
-if($r)
-			
-{
 
-	$sql3 = mysqli_query($con,"SELECT MAX(ID) FROM artist");
-$row = mysqli_fetch_row($sql3);
-print_r($row[0]);
+echo "Data Inserted";
 
-$sql1="Insert into userdata(username,artistid,contact,password,profileurl) values ('{$username}','{$row[0]}','{$contact}','{$password}','{$imageStore}')";
+ }
+ else{
+ echo "UserName Not Inserted";
+ 
+ }	
 
-$r1=mysqli_query($con,$sql1);	
-				
-			
-}
-else{}
-	
 
 
 mysqli_close($con);
