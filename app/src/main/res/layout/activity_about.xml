@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".About">
+
+    <TextView
+        android:fontFamily="cursive"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="About Appication"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+<ImageView
+    android:layout_margin="20dp"
+
+    android:background="@mipmap/man1"
+
+    android:layout_width="match_parent"
+    android:layout_height="350dp"/>
+
+    <TextView
+        android:padding="10dp"
+        android:text="      Music with art  is an application based with the prime objectives of promoting the arts and artist.It also added the features of music player so user can listen music by seing pictures simultanously.
+"       android:textSize="20dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+</ScrollView>

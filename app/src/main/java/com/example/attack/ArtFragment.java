@@ -82,6 +82,7 @@ AutoComplete auto;
 
         listView =view.findViewById(R.id.myListView);
         adapter = new MyAdapter(getContext(),employeeArrayList);
+        setheader();
         listView.setAdapter(adapter);
         autoComplete.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -126,7 +127,31 @@ AutoComplete auto;
 
 
 
-
+public void setheader(){
+        View headerview=LayoutInflater.from(getContext()).inflate(R.layout.header,null);
+        listView.addHeaderView(headerview);
+        TextView about=headerview.findViewById(R.id.about);
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),About.class));
+            }
+        });
+    TextView help=headerview.findViewById(R.id.help);
+    help.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getActivity(),Help.class));
+        }
+    });
+    TextView home=headerview.findViewById(R.id.home);
+    home.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            retrieveData();
+        }
+    });
+}
     public void retrieveData(){
 
         StringRequest request = new StringRequest(Request.Method.GET, url,
